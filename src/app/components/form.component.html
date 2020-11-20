@@ -1,0 +1,81 @@
+
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>BitCoin Order Form</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  
+<div fxLayout="column" fxLayoutAlign="start stretch">
+    <div fxLayout="row" fxLayOutAlign="center">
+        <div fxFlex="90%" fxFlex.md="66.6667%" fxFlex.gt-md="%">
+            <form [formGroup]="bitCoinForm">
+                <div>
+                    <mat-form-field>
+                        <label for="name">Name:</label>
+                        <input id="name" type="text" matInput formControlName ="name">
+                    </mat-form-field>
+
+                </div>
+                <div>
+                    <mat-form-field>
+                        <label for="contact">Contact No:</label>
+                        <input id="contact" type="text" matInput formControlName ="contactNo">
+                    </mat-form-field>
+                </div>
+                
+                
+                <div>
+                    <label> Gender: </label>
+                    <mat-radio-group formControlName="gender" name ="gender">
+                        <mat-radio-button value="female">Female</mat-radio-button>
+                        <mat-radio-button value="male">Male</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+               <div>
+                <mat-form-field>
+                    <label> Date of Birth</label>
+                    <input matInput [matDatepicker]="picker" formControlName="dob">
+                    <mat-datepicker-toggle matSuffix [for]='picker'></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+               </div>
+                
+               <div>
+                <mat-form-field>
+                    <label> Order Date</label>
+                    <input matInput [matDatepicker]="pickerTwo" formControlName="orderDate">
+                    <mat-datepicker-toggle matSuffix [for]='pickerTwo'></mat-datepicker-toggle>
+                    <mat-datepicker #pickerTwo></mat-datepicker>
+                  </mat-form-field>
+               </div>
+               <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Order Type</mat-label>
+                    <mat-select name="orderType" formControlName="orderType">
+                      <mat-option value = "buy" >
+                        Buy
+                      </mat-option>
+                      <mat-option value = "sell" >
+                        Sell
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+               </div>
+               <div>
+                   <mat-form-field>
+                       <label>Order Unit</label>
+                       <input matInput formControlName="orderUnit">
+                   </mat-form-field>
+               </div>
+                
+               <button mat-raised-button color="primary" type="submit">Submit</button>
+               <button mat-raised-button color="warn"> Reset</button>
+            </form>
+        </div>
+    </div>
+    
+    
+   
+</div>
+
+
