@@ -1,81 +1,151 @@
-
 <mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <span>BitCoin Order Form</span>
-    </mat-toolbar-row>
-  </mat-toolbar>
-  
-<div fxLayout="column" fxLayoutAlign="start stretch">
-    <div fxLayout="row" fxLayOutAlign="center">
-        <div fxFlex="90%" fxFlex.md="66.6667%" fxFlex.gt-md="%">
-            <form [formGroup]="bitCoinForm">
-                <div>
-                    <mat-form-field>
-                        <label for="name">Name:</label>
-                        <input id="name" type="text" matInput formControlName ="name">
-                    </mat-form-field>
+  <mat-toolbar-row>
+    <span>BitCoin Order Form</span>
+  </mat-toolbar-row>
+</mat-toolbar>
 
-                </div>
-                <div>
-                    <mat-form-field>
-                        <label for="contact">Contact No:</label>
-                        <input id="contact" type="text" matInput formControlName ="contactNo">
-                    </mat-form-field>
-                </div>
-                
-                
-                <div>
-                    <label> Gender: </label>
-                    <mat-radio-group formControlName="gender" name ="gender">
-                        <mat-radio-button value="female">Female</mat-radio-button>
-                        <mat-radio-button value="male">Male</mat-radio-button>
-                    </mat-radio-group>
-                </div>
-               <div>
-                <mat-form-field>
-                    <label> Date of Birth</label>
-                    <input matInput [matDatepicker]="picker" formControlName="dob">
-                    <mat-datepicker-toggle matSuffix [for]='picker'></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                  </mat-form-field>
-               </div>
-                
-               <div>
-                <mat-form-field>
-                    <label> Order Date</label>
-                    <input matInput [matDatepicker]="pickerTwo" formControlName="orderDate">
-                    <mat-datepicker-toggle matSuffix [for]='pickerTwo'></mat-datepicker-toggle>
-                    <mat-datepicker #pickerTwo></mat-datepicker>
-                  </mat-form-field>
-               </div>
-               <div>
-                <mat-form-field appearance="fill">
-                    <mat-label>Order Type</mat-label>
-                    <mat-select name="orderType" formControlName="orderType">
-                      <mat-option value = "buy" >
-                        Buy
-                      </mat-option>
-                      <mat-option value = "sell" >
-                        Sell
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-               </div>
-               <div>
-                   <mat-form-field>
-                       <label>Order Unit</label>
-                       <input matInput formControlName="orderUnit">
-                   </mat-form-field>
-               </div>
-                
-               <button mat-raised-button color="primary" type="submit">Submit</button>
-               <button mat-raised-button color="warn"> Reset</button>
-            </form>
-        </div>
+<!-- <div>
+      <div>
+          <div> -->
+<!-- <div fxLayout="column" fxLayoutAlign="start stretch">
+    <div fxLayout="row" fxLayOutAlign="center">
+        <div fxFlex="90%" fxFlex.md="66.6667%" fxFlex.gt-md="100%"> -->
+<div>
+  <form
+    [formGroup]="bitCoinForm"
+    (ngSubmit)="submitOrder()"
+    #formDirective="ngForm"
+  >
+    <div>
+      <mat-form-field>
+        <label for="name">Name:</label>
+        <input id="name" type="text" matInput formControlName="name" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <label for="contact">Contact No:</label>
+        <input id="contact" type="text" matInput formControlName="contactNo" />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <label> Gender: </label>
+      <mat-radio-group formControlName="gender" name="gender">
+        <mat-radio-button value="female">Female</mat-radio-button>
+        <mat-radio-button value="male">Male</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div>
+      <mat-form-field>
+        <label> Date of Birth</label>
+        <input matInput [matDatepicker]="picker" formControlName="dob" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <label> Order Date</label>
+        <input
+          matInput
+          [matDatepicker]="pickerTwo"
+          formControlName="orderDate"
+          [min]="todayDate"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="pickerTwo"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #pickerTwo></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Order Type</mat-label>
+        <mat-select name="orderType" formControlName="orderType">
+          <mat-option value="buy"> Buy </mat-option>
+          <mat-option value="sell"> Sell </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <label>Order Unit</label>
+        <input matInput formControlName="orderUnit" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <label>Cryptocurrency Pair</label>
+        <input matInput formControlName="cryptoPair" disabled />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-error
+        *ngIf="
+          bitCoinForm.get('name').invalid &&
+          (bitCoinForm.get('name').touched || bitCoinForm.get('name').dirty)
+        "
+      >
+        Invalid Name</mat-error
+      >
+      <mat-error
+        *ngIf="
+          bitCoinForm.get('contactNo').invalid &&
+          (bitCoinForm.get('contactNo').touched ||
+            bitCoinForm.get('contactNo').dirty)
+        "
+      >
+        Invalid Phone Number</mat-error
+      >
+      <mat-error
+        *ngIf="
+          bitCoinForm.get('orderUnit').invalid &&
+          (bitCoinForm.get('orderUnit').touched ||
+            bitCoinForm.get('orderUnit').dirty)
+        "
+      >
+        Invalid Order Unit</mat-error
+      >
+      <mat-error
+        *ngIf="
+          bitCoinForm.get('orderDate').invalid &&
+          (bitCoinForm.get('orderDate').touched ||
+            bitCoinForm.get('orderDate').dirty)
+        "
+      >
+        Order Date cannot be earlier than today</mat-error
+      >
+      <mat-error
+        *ngIf="
+          bitCoinForm.get('dob').invalid &&
+          (bitCoinForm.get('dob').touched || bitCoinForm.get('dob').dirty)
+        "
+      >
+        {{ bitCoinForm.get("dob").errors["invalidDate"] }}</mat-error
+      >
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="bitCoinForm.invalid"
+    >
+      Submit
+    </button>
+    <button mat-raised-button color="warn" (click)="reset(formDirective)">
+      Reset
+    </button>
+  </form>
+</div>
+
+<!--        </div>
     </div>
     
     
    
 </div>
-
-
+ -->

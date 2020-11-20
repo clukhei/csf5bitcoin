@@ -1,1 +1,35 @@
-<p>confirmation works!</p>
+<mat-toolbar color="accent">
+  <mat-toolbar-row>
+    <span>Order Confirmed</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card>
+  <mat-card-title>Your Bitcoin order details</mat-card-title>
+  <mat-card-content>
+    <div>
+      <h4>Name:</h4>
+      <p>{{ receivedData.name }}</p>
+    </div>
+    <div>
+      <h4>Contact Number:</h4>
+      <p>{{ receivedData.contactNo }}</p>
+    </div>
+    <div>
+      <h4>Gender:</h4>
+      <p>{{ receivedData.gender }}</p>
+    </div>
+    <div>
+      <h4>Date Of Birth:</h4>
+      <p>{{ receivedData.dob }}</p>
+    </div>
+    <div>
+      <h4>Order Date:</h4>
+      <p>{{ receivedData.orderDate }}</p>
+    </div>
+    <div>
+      <h4>Order Type:</h4>
+      <p>{{ receivedData.orderType }}</p>
+    </div>
+  </mat-card-content>
+</mat-card>
