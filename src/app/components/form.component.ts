@@ -10,11 +10,6 @@ import { Router } from '@angular/router';
 })
 export class FormComponent implements OnInit {
 
-
-
-
-
-
   bitCoinForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
     contactNo: new FormControl('', [Validators.required, Validators.pattern('^(8|9|6)[0-9]{0,7}$')]),
