@@ -1,6 +1,6 @@
 export class BitCoinForm {
-    constructor (
-        public name: string, 
+    constructor(
+        public name: string,
         public contactNo: string,
         public gender: string,
         public dob: Date,
@@ -10,7 +10,8 @@ export class BitCoinForm {
         public cryptoPair: String,
         public cryptoPrice: String,
         public qrURL: string,
-        public bitcoinAdd: string
-        
-    ){}
+        public bitcoinAdd: string,
+
+
+    ) { }
 }

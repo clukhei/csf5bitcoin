@@ -18,19 +18,19 @@
   >
     <div>
       <mat-form-field>
-        <label for="name">Name:</label>
+        <mat-label for="name">Name</mat-label>
         <input id="name" type="text" matInput formControlName="name" />
       </mat-form-field>
     </div>
     <div>
       <mat-form-field>
-        <label for="contact">Contact No:</label>
+        <mat-label for="contact">Contact No</mat-label>
         <input id="contact" type="text" matInput formControlName="contactNo" />
       </mat-form-field>
     </div>
 
     <div>
-      <label> Gender: </label>
+      <mat-label> Gender </mat-label>
       <mat-radio-group formControlName="gender" name="gender">
         <mat-radio-button value="female">Female</mat-radio-button>
         <mat-radio-button value="male">Male</mat-radio-button>
@@ -38,7 +38,7 @@
     </div>
     <div>
       <mat-form-field>
-        <label> Date of Birth</label>
+        <mat-label> Date of Birth</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="dob" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
@@ -47,7 +47,7 @@
 
     <div>
       <mat-form-field>
-        <label> Order Date</label>
+        <mat-label> Order Date</mat-label>
         <input
           matInput
           [matDatepicker]="pickerTwo"
@@ -71,17 +71,33 @@
       </mat-form-field>
     </div>
     <div>
+      <mat-form-field *ngIf="bitCoinForm.get('orderType').value === 'sell'">
+        <mat-label>Enter your Paylah/PayNow QR code url</mat-label>
+        <input matInput formControlName="qrURL" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field *ngIf="bitCoinForm.get('orderType').value === 'buy'">
+        <mat-label>Enter you Bitcoin Address</mat-label>
+        <input matInput formControlName="bitcoinAdd" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-label>Cryptocurrency Pair: {{ getCryptoPair() }}</mat-label>
+    </div>
+    <div>
       <mat-form-field>
-        <label>Order Unit</label>
+        <mat-label>Order Unit</mat-label>
         <input matInput formControlName="orderUnit" />
       </mat-form-field>
     </div>
     <div>
-      <mat-form-field>
-        <label>Cryptocurrency Pair</label>
-        <input matInput formControlName="cryptoPair" disabled />
-      </mat-form-field>
+      <mat-label>Cryptocurrency Price: {{ getCryptoPrice() }} </mat-label>
     </div>
+    <div>
+      <mat-label>Equivalent Amount in SGD: {{ calculatedAmt() }} </mat-label>
+    </div>
+
     <div>
       <mat-error
         *ngIf="
@@ -136,10 +152,10 @@
     >
       Submit
     </button>
-    <button mat-raised-button color="warn" (click)="reset(formDirective)">
-      Reset
-    </button>
   </form>
+  <button mat-raised-button color="warn" (click)="reset(formDirective)">
+    Reset
+  </button>
 </div>
 
 <!--        </div>

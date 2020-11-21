@@ -1,5 +1,3 @@
-.mat-form-field-infix{
-    min-width: 500px;
+.mat-form-field {
+  width: 20%;
 }
-
-.mat-form-field{ width: 50%; }

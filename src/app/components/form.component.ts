@@ -18,33 +18,37 @@ export class FormComponent implements OnInit {
     orderDate: new FormControl('', [Validators.required]),
     orderType: new FormControl('', [Validators.required]),
     orderUnit: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{1,45}$')]),
-    cryptoPair: new FormControl({ value: 'SGD/BTC', disabled: true }),
-    cryptoPrice: new FormControl(''),
+    cryptoPair: new FormControl('SGD/BTC'),
+    cryptoPrice: new FormControl('200'),
     qrURL: new FormControl(''),
-    bitcoinAdd: new FormControl('')
+    bitcoinAdd: new FormControl(''),
+
   })
+  initialValues: Object
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.bitCoinForm
-    console.log(this.bitCoinForm.get('dob').value)
-
-    console.log(new Date().getTime())
-    console.log(this.bitCoinForm.get('name').invalid)
+    this.initialValues = this.bitCoinForm.value
   }
+
+  calculatedAmt = () => this.bitCoinForm.get('orderUnit').value * this.bitCoinForm.get('cryptoPrice').value
+  getCryptoPair = () => this.bitCoinForm.get('cryptoPair').value
+  getCryptoPrice = () => this.bitCoinForm.get('cryptoPrice').value
 
   todayDate: Date = new Date()
 
   submitOrder() {
-    console.log(this.bitCoinForm.get('name').value)
+    console.log(this.bitCoinForm.value)
     const parsedForm = JSON.stringify(this.bitCoinForm.value)
     this.router.navigate(['/confirmation'], { state: { data: parsedForm } })
   }
 
   reset(formDirective) {
-    formDirective.reset()
-    this.bitCoinForm.reset()
+    console.log('reset')
+    formDirective.reset(this.initialValues)
+    //this.bitCoinForm.reset(this.initialValues)
   }
   getErrorMsg() {
     return "Error"
