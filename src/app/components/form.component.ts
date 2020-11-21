@@ -17,11 +17,12 @@ export class FormComponent implements OnInit {
     dob: new FormControl('', [Validators.required, dateValidator()]),
     orderDate: new FormControl('', [Validators.required]),
     orderType: new FormControl('', [Validators.required]),
-    orderUnit: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{1,45}$')]),
+    orderUnit: new FormControl('', [Validators.required, Validators.pattern('^([0-9]+(\.?[0-9]?[0-9]?)?)')]),
     cryptoPair: new FormControl('SGD/BTC'),
-    cryptoPrice: new FormControl('200'),
+    cryptoPrice: new FormControl(200),
     qrURL: new FormControl(''),
     bitcoinAdd: new FormControl(''),
+    totalAmt: new FormControl(0)
 
   })
   initialValues: Object
@@ -33,7 +34,11 @@ export class FormComponent implements OnInit {
     this.initialValues = this.bitCoinForm.value
   }
 
-  calculatedAmt = () => this.bitCoinForm.get('orderUnit').value * this.bitCoinForm.get('cryptoPrice').value
+  calculatedAmt = () => {
+    const product = this.bitCoinForm.get('orderUnit').value * this.bitCoinForm.get('cryptoPrice').value
+    this.bitCoinForm.get('totalAmt').setValue(product)
+    return product
+  }
   getCryptoPair = () => this.bitCoinForm.get('cryptoPair').value
   getCryptoPrice = () => this.bitCoinForm.get('cryptoPrice').value
 

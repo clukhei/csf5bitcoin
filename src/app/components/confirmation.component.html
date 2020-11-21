@@ -31,5 +31,25 @@
       <h4>Order Type:</h4>
       <p>{{ receivedData.orderType }}</p>
     </div>
+    <div *ngIf="receivedData.orderType == 'sell'">
+      <h4>BitCoin Address</h4>
+      <p>{{ receivedData.bitcoinAdd }}</p>
+    </div>
+    <div *ngIf="receivedData.orderType == 'buy'">
+      <h4>QR code</h4>
+      <img src="{{ receivedData.qrURL }}" alt="qr code" />
+    </div>
+    <div>
+      <h4>Cryptocurreny Pair</h4>
+      <p>{{ receivedData.cryptoPair }}</p>
+    </div>
+    <div>
+      <h4>Cryptocurreny Price</h4>
+      <p>{{ receivedData.cryptoPrice }}</p>
+    </div>
+    <div>
+      <h4>Total Amount to {{ receivedData.orderType }}</h4>
+      <p>{{ receivedData.totalAmt }}</p>
+    </div>
   </mat-card-content>
 </mat-card>
