@@ -36,24 +36,21 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.fetchApi()
+    this.fetchApi()
     this.bitCoinForm
     this.initialValues = this.bitCoinForm.value
   }
 
 
-  cryptoData = {
-    ask: 78675,
-    bid: 98986
-  }
-  /* fetchApi() {
+  cryptoData
+  fetchApi() {
 
     this.http.get('http://csf5bitcoin-be.herokuapp.com/bitcoin/BTCSGD').subscribe(data => {
       console.log(data)
       return this.cryptoData = data
 
     })
-  } */
+  }
   calculatedAmt = () => {
     const product = this.bitCoinForm.get('orderUnit').value * this.bitCoinForm.get('cryptoPrice').value
     this.bitCoinForm.get('totalAmt').setValue(product)

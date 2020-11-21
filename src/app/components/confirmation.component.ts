@@ -23,7 +23,7 @@ export class ConfirmationComponent implements OnInit {
     qrURL: 'https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fwww.google.com%2F&chs=180x180&choe=UTF-8&chld=L|2'
   } */
   constructor(private router: Router) {
-    /* console.log(history.state.data) */
+
 
 
     const data = this.router.getCurrentNavigation().extras.state.data

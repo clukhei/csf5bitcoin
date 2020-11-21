@@ -3,53 +3,61 @@
     <span>Order Confirmed</span>
   </mat-toolbar-row>
 </mat-toolbar>
+<div class="confirm-container">
+  <mat-card>
+    <mat-card-title>Your Bitcoin order details</mat-card-title>
+    <mat-card-content>
+      <mat-grid-list cols="2" rowHeight="5:0.8">
+        <mat-grid-tile>
+          <h3>Name:</h3>
+          <p>{{ receivedData.name }}</p>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <h3>Contact Number:</h3>
+          <p>{{ receivedData.contactNo }}</p>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <h3>Gender:</h3>
+          <p>{{ receivedData.gender }}</p>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <h3>Date Of Birth:</h3>
+          <p>{{ receivedData.dob }}</p>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <h3>Order Date:</h3>
+          <p>{{ receivedData.orderDate }}</p>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <h3>Order Type:</h3>
+          <p>{{ receivedData.orderType }}</p>
+        </mat-grid-tile>
+        <mat-grid-tile *ngIf="receivedData.orderType == 'sell'">
+          <h4>BitCoin Address:</h4>
+          <p>bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq</p>
+        </mat-grid-tile>
+        <mat-grid-tile *ngIf="receivedData.orderType == 'buy'" rowspan="2">
+          <h3>QR code:</h3>
+          <img
+            src="https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fwww.google.com%2F&chs=180x180&choe=UTF-8&chld=L|2"
+            alt="qr code"
+          />
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <h3>Cryptocurreny Pair:</h3>
+          <p>{{ receivedData.cryptoPair }}</p>
+        </mat-grid-tile>
 
-<mat-card>
-  <mat-card-title>Your Bitcoin order details</mat-card-title>
-  <mat-card-content>
-    <div>
-      <h4>Name:</h4>
-      <p>{{ receivedData.name }}</p>
-    </div>
-    <div>
-      <h4>Contact Number:</h4>
-      <p>{{ receivedData.contactNo }}</p>
-    </div>
-    <div>
-      <h4>Gender:</h4>
-      <p>{{ receivedData.gender }}</p>
-    </div>
-    <div>
-      <h4>Date Of Birth:</h4>
-      <p>{{ receivedData.dob }}</p>
-    </div>
-    <div>
-      <h4>Order Date:</h4>
-      <p>{{ receivedData.orderDate }}</p>
-    </div>
-    <div>
-      <h4>Order Type:</h4>
-      <p>{{ receivedData.orderType }}</p>
-    </div>
-    <div *ngIf="receivedData.orderType == 'sell'">
-      <h4>BitCoin Address</h4>
-      <p>{{ receivedData.bitcoinAdd }}</p>
-    </div>
-    <div *ngIf="receivedData.orderType == 'buy'">
-      <h4>QR code</h4>
-      <img src="{{ receivedData.qrURL }}" alt="qr code" />
-    </div>
-    <div>
-      <h4>Cryptocurreny Pair</h4>
-      <p>{{ receivedData.cryptoPair }}</p>
-    </div>
-    <div>
-      <h4>Cryptocurreny Price</h4>
-      <p>{{ receivedData.cryptoPrice }}</p>
-    </div>
-    <div>
-      <h4>Total Amount to {{ receivedData.orderType }}</h4>
-      <p>{{ receivedData.totalAmt }}</p>
-    </div>
-  </mat-card-content>
-</mat-card>
+        <mat-grid-tile>
+          <h3>Cryptocurreny Price:</h3>
+          <p>{{ receivedData.cryptoPrice }}</p>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <h3>Total Amount to {{ receivedData.orderType }}</h3>
+          <p>SGD ${{ receivedData.totalAmt }}</p>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+  </mat-card>
+</div>
