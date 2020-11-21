@@ -45,7 +45,8 @@ export class FormComponent implements OnInit {
   cryptoData
   fetchApi() {
 
-    this.http.get('http://csf5bitcoin-be.herokuapp.com/bitcoin/BTCSGD').subscribe(data => {
+    this.http.get('https://csf5bitcoin-be.herokuapp.com/bitcoin/BTCSGD').subscribe(data => {
+
       console.log(data)
       return this.cryptoData = data
 
