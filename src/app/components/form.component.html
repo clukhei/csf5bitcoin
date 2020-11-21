@@ -10,7 +10,12 @@
 <!-- <div fxLayout="column" fxLayoutAlign="start stretch">
     <div fxLayout="row" fxLayOutAlign="center">
         <div fxFlex="90%" fxFlex.md="66.6667%" fxFlex.gt-md="100%"> -->
-<div>
+<div
+  fxLayout="column"
+  fxLayoutGap="10px"
+  fxLayoutAlign="space-around stretch"
+  class="form-container"
+>
   <form
     [formGroup]="bitCoinForm"
     (ngSubmit)="submitOrder()"
@@ -153,9 +158,11 @@
       Submit
     </button>
   </form>
-  <button mat-raised-button color="warn" (click)="reset(formDirective)">
-    Reset
-  </button>
+  <div>
+    <button mat-raised-button color="warn" (click)="reset(formDirective)">
+      Reset
+    </button>
+  </div>
 </div>
 
 <!--        </div>
